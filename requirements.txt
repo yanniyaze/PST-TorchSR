@@ -1,0 +1,5 @@
+torch
+torchvision
+pillow
+matplotlib
+git+https://github.com/Coloquinte/torchsr.git
