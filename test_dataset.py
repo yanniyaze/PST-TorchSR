@@ -1,5 +1,5 @@
 from torchsr.datasets import Div2K
-from torchsr.models import ninasr_b0
+from torchsr.models import ninasr_b0, edsr_baseline, rdn_a, carn_m, rcan_g10r20f64
 from torchvision.transforms.functional import to_pil_image, to_tensor
 import matplotlib.pyplot as plt
 import torch
@@ -9,7 +9,19 @@ dataset = Div2K(root="./scripts/data", scale=2, download=False)
 hr, lr = dataset[5]
 
 # Modell laden
-model = ninasr_b0(scale=2, pretrained=True)
+inputModel = input("Auswahl: ")
+match(str(inputModel).lower()):
+    case "ninasr":
+        model = ninasr_b0(scale=2, pretrained=True)
+    case "edsr":
+        model = edsr_baseline(2, True)
+    case "rdn":
+        model = rdn_a(2,True)
+    case "carn":
+        model = carn_m(2, True)
+    case "rcan":
+        model = rcan_g10r20f64(2, True)
+
 model.eval()
 
 # Super-Resolution ausführen
@@ -29,4 +41,4 @@ axs[1].set_title("Super-Resolved")
 axs[2].imshow(hr)
 axs[2].set_title("High-Resolution")
 for ax in axs: ax.axis("off")
-sr.show() # hr.show(), lr.show(), sr.show()
+plt.show() # hr.show(), lr.show(), sr.show()
