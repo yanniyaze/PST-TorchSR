@@ -5,18 +5,15 @@ import torch
 from torchsr.models import ninasr_b0
 import matplotlib.pyplot as plt
 
-# 1️⃣ Pfad zu deinem Google Drive Ordner (lokal heruntergeladen)
 image_dir = Path("./scripts/google_drive_pictures/Yannik")
 image_paths = list(image_dir.rglob("*.png")) + list(image_dir.rglob("*.jpg"))
 
 print(f"Gefundene Bilder: {len(image_paths)}")
 
-# 2️⃣ Modell laden
 device = "cuda" if torch.cuda.is_available() else "cpu"
 model = ninasr_b0(scale=2, pretrained=True).to(device)
 model.eval()
 
-# 3️⃣ Schleife über Bilder
 for img_path in image_paths:
     lr = Image.open(img_path).convert("RGB")
 

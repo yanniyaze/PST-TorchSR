@@ -6,7 +6,7 @@ import torch
 
 # Dataset laden
 dataset = Div2K(root="./scripts/data", scale=2, download=False)
-hr, lr = dataset[0]
+hr, lr = dataset[5]
 
 # Modell laden
 model = ninasr_b0(scale=2, pretrained=True)
@@ -29,4 +29,4 @@ axs[1].set_title("Super-Resolved")
 axs[2].imshow(hr)
 axs[2].set_title("High-Resolution")
 for ax in axs: ax.axis("off")
-plt.show()
+sr.show() # hr.show(), lr.show(), sr.show()
