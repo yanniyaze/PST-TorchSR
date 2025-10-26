@@ -7,13 +7,13 @@ import time
 
 # Dataset laden
 dataset = Div2K(root="./scripts/data", scale=2, download=False)
-hr, lr = dataset[5]
+hr, lr = dataset[19]
 
 # Modell laden
 inputModel = input("Auswahl: ")
 match(str(inputModel).lower()):
     case "ninasr":
-        model = ninasr_b0(scale=2, pretrained=True)
+        model = ninasr_b0(scale=0.5, pretrained=True)
     case "edsr":
         model = edsr_baseline(2, True)
     case "rdn":
@@ -48,4 +48,6 @@ axs[2].set_title("High-Resolution")
 end = time.time()
 print("Timer end ", end - start)
 for ax in axs: ax.axis("off")
-plt.show() # hr.show(), lr.show(), sr.show()
+lr.show()
+hr.show()
+sr.show() # hr.show(), lr.show(), sr.show()
