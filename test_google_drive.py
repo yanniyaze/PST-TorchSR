@@ -12,7 +12,7 @@ fileIds = [
     "1Wxxs3pOkUANkAGI57K_T6w32XgRy0Pn9"
 ]
 
-file_id = fileIds[0]
+file_id = fileIds[1]
 url = f"https://drive.google.com/uc?id={file_id}"
 
 # Bild direkt aus Drive laden
@@ -23,7 +23,7 @@ lr_img = Image.open(BytesIO(response.content)).convert("RGB")
 
 # === Modell laden ===
 device = "cuda" if torch.cuda.is_available() else "cpu"
-model = ninasr_b0(scale=8, pretrained=True).to(device)
+model = ninasr_b0(scale=4, pretrained=True).to(device)
 model.eval()
 
 # === Super-Resolution ===
